@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Room Template</h1>
+
+{% if room != None %}
+    {{ room.name }}
+{% endif %}
+
+{% endblock %}
