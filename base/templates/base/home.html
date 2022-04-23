@@ -23,7 +23,7 @@
         {% endfor %}
     </div>
     <div>
-        <h1>Home Template</h1>
+        <h3>{{ room_count }} rooms available</h3>
 <a href="{% url 'create-room' %}">Create Room</a>
 <div>
     {% for room in rooms %}
