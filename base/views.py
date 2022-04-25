@@ -5,11 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from . models import Topic, Room, Message
+from django.contrib.auth.forms import UserCreationForm
 from .forms import RoomForm
 
 # Create your views here.
 
 def loginUser(request):
+    form = 'login'
     if request.user.is_authenticated:
       return redirect('home')
     if request.method == "POST":
@@ -27,8 +29,21 @@ def loginUser(request):
             return redirect('home')
         else:
             messages.error(request, 'Invalid username or password.')
-    context = {}
+    context = {form:form}
     return render(request, 'base/login_register.html', context)
+    
+def registerUser(request):
+    form = UserCreationForm()
+    if request.method == 'POST':
+      form = UserCreationForm(request.POST)
+      if form.is_valid:
+        user = form.save(commit=False)
+        user.username = user.username.lower()
+        user.save()
+    context = {'form':form}
+    return render(request, 'base/login_register', context)
+      
+      
 
 def logoutUser(request):
     logout(request)
