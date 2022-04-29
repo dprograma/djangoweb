@@ -1,22 +1,24 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>WebSoft Systems</title>
+  <meta charset="UTF-8">
+  <title>WebSoft Systems</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
 </head>
 <body>
-{% include 'navbar.html' %}
+  {% include 'navbar.html' %}
 
-{% if messages %}
-<ul class="messages">
+  {% if messages %}
+  <ul class="messages">
     {% for message in messages %}
     <li>{{ message }}</li>
     {% endfor %}
-</ul>
-{% endif %}
+  </ul>
+  {% endif %}
 
-{% block content %}
+  {% block content %}
 
-{% endblock %}
+  {% endblock %}
 </body>
 </html>

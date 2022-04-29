@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    {% if form == 'login' %}
+    {% if page == 'login' %}
     <form action="" method="post">
         {% csrf_token %}
         <label for="username">Username</label>
@@ -12,12 +12,13 @@
 
         <input type="submit" value="Login">
     </form>
-    <p>"Not signed up yet? <a href="{% url 'register' ">Signup</a></p>
+    <p>"Not signed up yet? <a href="{% url 'register' %}">Signup</a></p>
     {% else %}
     <form action="" method="post">
+      {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Login">
+        <input type="submit" value="Register">
     </form>
-    <p>"Already signes up? <a href="{% url 'login' ">Login</a></p>
+    <p>"Already signes up? <a href="{% url 'login' %}">Register</a></p>
     {% endif %}
 {% endblock content %}
