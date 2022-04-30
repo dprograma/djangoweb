@@ -1,4 +1,5 @@
-<h1><a href="#">LOGO</a></h1>
+{% load static %}
+<h1><a href="{% url 'home' %}"><img class='logo' src="{% static 'images/logo.jpg' %}" /></a></h1>
 <form action="{% url 'home' %}">
     <input type="text" name="q" placeholder="Search Rooms...">
 </form>
