@@ -1,15 +1,9 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
-<style>
-    .room_templates{
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-    }
-</style>
-<div class="room_templates">
-<div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-12 col-md-8">
 <h1>Room Template</h1>
 
 {% if room != None %}
@@ -37,11 +31,12 @@
   {% endif %}
 </div>
 </div>
-<div>
+<div class="col-12 col-md-4">
   <h3>Participants</h3>
   {% for user in participants %}
     <p>@{{ user.username }}</p>
   {% endfor %}
+</div>
 </div>
 </div>
 {% endblock %}
