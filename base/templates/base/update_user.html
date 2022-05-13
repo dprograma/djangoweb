@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="" id="" value="Update User" />
+  </form>
+{% endblock content %}

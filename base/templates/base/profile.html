@@ -7,8 +7,9 @@
     grid-template-columns: 1fr 3fr 1fr;
   }
 </style>
-  <h3>{{ user.username }}</h3>
-  
+  <img src="{{ request.user.avatar.url }}" width='80' height='80' />
+  <h3>Hello {{ user.username }}</h3>
+  <a href="{% url 'update-user' %}">Update profile</a>
   <div class="profile-component">
     <div>
       {% include 'base/topics_component.html' %}

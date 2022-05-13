@@ -1,12 +1,11 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from . models import Topic, Room, Message
+from . models import Topic, Room, Message, User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RoomForm
+from .forms import RoomForm, UserForm
 
 # Create your views here.
 
@@ -65,6 +64,19 @@ def home(request):
     topics = Topic.objects.all()
     context = {'rooms': rooms, 'topics': topics, 'room_count': room_count, 'room_messages':room_messages}
     return render(request, 'base/home.html', context)
+  
+@login_required(login_url='login')
+def updateUser(request):
+    user = request.user
+    form=UserForm(instance=user)
+    if request.method == 'POST':
+      profile=UserForm(request.POST, request.FIELD, instance=user)
+      if profile.is_valid:
+        profile.save()
+        return redirect('user-profile', pk=user.id)
+      
+    return render(request, 'base/update_user.html', {'form: form'})
+    
 
 @login_required(login_url='login')
 def room(request, pk):
