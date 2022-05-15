@@ -8,7 +8,7 @@ class User(AbstractUser):
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True, default='avatar.jpg')
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)
